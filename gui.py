@@ -1,5 +1,6 @@
 import tkinter as tk
-from create_board import board
+from time import sleep
+from create_board import board, fill_board
 
 # initialvalues used for tkinter
 window_width = 600
@@ -37,17 +38,28 @@ for a in range(1, lines):
         (x, yspace), (x + draw_height, yspace), width=line_width)
 
 # Write numbers in every square
-xspace = x
-yspace = y
-for a in board:
-    xspace = x + 7
-    for b in board[a]:
-        curr_num = b
-        canvas.create_text((xspace, yspace), text=curr_num,
-                           anchor="nw", font="tkDefaultFont 24")
-        xspace += draw_width/9
+def write_nums():
+    xspace = x
+    yspace = y
+    for a in board:
+        xspace = x + 7
+        for b in board[a]:
+            curr_num = b
+            if b == 0:
+                curr_num = ""
+            
+            canvas.create_text((xspace, yspace), text=curr_num,
+                            anchor="nw", font="tkDefaultFont 22")
+            xspace += draw_width/9
 
-    yspace += draw_height/9
+        yspace += draw_height/9
 
 canvas.pack(anchor=tk.CENTER, expand=True)
+
+for index in range(9):
+    fill_board(index)
+    write_nums()
+    root.update()
+    sleep(0.75)
+
 root.mainloop()

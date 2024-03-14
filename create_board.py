@@ -25,7 +25,13 @@ def set_nums(num, index):
         board[x][y - 1] = num
 
 
-for index in range(9):
+# for index in range(9):
+#     num_index = randrange(len(nums))
+#     num = nums[num_index]
+#     set_nums(num, index)
+#     nums.pop(num_index)
+
+def fill_board(index):
     num_index = randrange(len(nums))
     num = nums[num_index]
     set_nums(num, index)
